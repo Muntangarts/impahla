@@ -6,11 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [ContributionEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [ContributionEntity::class, UserEntity::class, EventEntity::class, ProgrammeEntity::class],
+    version = 3,
+    exportSchema = false
+)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun contributionDao(): ContributionDao
+    abstract fun userDao(): UserDao
+    abstract fun eventDao(): EventDao
+    abstract fun programmeDao(): ProgrammeDao
 
     companion object {
         @Volatile

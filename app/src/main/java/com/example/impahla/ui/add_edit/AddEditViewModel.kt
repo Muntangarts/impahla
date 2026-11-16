@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 
 data class AddEditUiState(
     val id: Long = 0,
+    val eventId: Long = 0,
     val contributorName: String = "",
     val type: ContributionType = ContributionType.CASH,
     val cashAmount: String = "",
@@ -37,6 +38,12 @@ class AddEditViewModel(
     private val _uiState = MutableStateFlow(AddEditUiState())
     val uiState: StateFlow<AddEditUiState> = _uiState.asStateFlow()
 
+    fun setEventId(eventId: Long) {
+        if (eventId > 0) {
+            _uiState.update { it.copy(eventId = eventId) }
+        }
+    }
+
     fun loadContribution(id: Long) {
         if (id <= 0) return
         viewModelScope.launch {
@@ -45,6 +52,7 @@ class AddEditViewModel(
                 _uiState.update {
                     it.copy(
                         id = existing.id,
+                        eventId = existing.eventId,
                         contributorName = existing.contributorName,
                         type = existing.type,
                         cashAmount = if (existing.cashAmount > 0) existing.cashAmount.toString() else "",
@@ -153,6 +161,7 @@ class AddEditViewModel(
         viewModelScope.launch {
             val entity = ContributionEntity(
                 id = state.id,
+                eventId = state.eventId,
                 contributorName = state.contributorName.trim(),
                 type = state.type,
                 cashAmount = parsedCash,

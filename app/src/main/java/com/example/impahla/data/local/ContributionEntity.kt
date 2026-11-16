@@ -9,10 +9,13 @@ import com.example.impahla.model.ContributionType
 data class ContributionEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
+    val eventId: Long = 0,
+    val contributorId: Long = 0,
     val contributorName: String,
     val type: ContributionType,
     val cashAmount: Double = 0.0,
     val giftDescription: String = "",
+    val giftCategory: String = "",
     val status: ContributionStatus,
     val photoPath: String? = null,
     val notes: String? = null,
