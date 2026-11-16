@@ -60,7 +60,9 @@ class AddEditViewModel(
     }
 
     fun onNameChanged(name: String) {
-        _uiState.update { it.copy(contributorName = name, nameError = null) }
+        val filtered = name.filter { it.isLetter() || it.isWhitespace() || it == '-' || it == '\'' || it == '.' }
+            .replace(Regex("\\s+"), " ")
+        _uiState.update { it.copy(contributorName = filtered, nameError = null) }
     }
 
     fun onTypeChanged(type: ContributionType) {
@@ -95,9 +97,22 @@ class AddEditViewModel(
         var amountErr: String? = null
         var giftErr: String? = null
 
-        if (state.contributorName.trim().isEmpty()) {
+        val trimmedName = state.contributorName.trim()
+        if (trimmedName.isEmpty()) {
             nameErr = "Contributor name is required"
             hasError = true
+        } else if (trimmedName.length < 2) {
+            nameErr = "Name must be at least 2 characters long"
+            hasError = true
+        } else if (!trimmedName.any { it.isLetter() }) {
+            nameErr = "Name must contain letters"
+            hasError = true
+        } else {
+            val nameRegex = "^[\\p{L}\\s\\-'.]+$".toRegex()
+            if (!trimmedName.matches(nameRegex)) {
+                nameErr = "Name can only contain letters, spaces, hyphens, and apostrophes"
+                hasError = true
+            }
         }
 
         var parsedCash = 0.0
