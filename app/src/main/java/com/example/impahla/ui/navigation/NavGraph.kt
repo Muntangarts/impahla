@@ -159,9 +159,12 @@ fun NavGraph(navController: NavHostController) {
                 viewModel = contributorViewModel,
                 onNavigateToExplore = { navController.navigate(ScreenRoutes.EXPLORE_EVENTS) },
                 onLogout = {
-                    navController.navigate(ScreenRoutes.CONTRIBUTOR_DASHBOARD) {
+                    navController.navigate(ScreenRoutes.LOGIN) {
                         popUpTo(ScreenRoutes.CONTRIBUTOR_DASHBOARD) { inclusive = true }
                     }
+                },
+                onEventClick = { eventId ->
+                    navController.navigate(ScreenRoutes.eventDetailsRoute(eventId))
                 }
             )
         }

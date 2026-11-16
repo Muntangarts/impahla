@@ -48,7 +48,7 @@ fun EventDetailsScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(24.dp),
+                    .padding(28.dp),
                 verticalArrangement = Arrangement.Center
             ) {
                 Text("Loading event details or event not found...")
@@ -63,6 +63,7 @@ fun EventDetailsScreen(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                Spacer(modifier = Modifier.height(8.dp))
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),

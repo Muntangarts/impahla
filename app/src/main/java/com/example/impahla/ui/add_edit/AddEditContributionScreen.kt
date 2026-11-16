@@ -82,6 +82,7 @@ fun AddEditContributionScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            Spacer(modifier = Modifier.height(8.dp))
             // Contributor Name
             OutlinedTextField(
                 value = uiState.contributorName,

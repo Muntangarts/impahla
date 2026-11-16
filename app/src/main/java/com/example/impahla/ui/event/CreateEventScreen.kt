@@ -60,6 +60,7 @@ fun CreateEventScreen(
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
                 value = eventName,
                 onValueChange = { eventName = it },

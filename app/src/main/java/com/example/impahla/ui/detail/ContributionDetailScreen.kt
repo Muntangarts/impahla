@@ -132,6 +132,7 @@ fun ContributionDetailScreen(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                Spacer(modifier = Modifier.height(8.dp))
                 // Main Info Card
                 Card(
                     modifier = Modifier.fillMaxWidth(),

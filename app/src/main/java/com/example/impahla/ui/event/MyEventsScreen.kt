@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Event
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.impahla.ui.components.EmptyState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,11 +55,15 @@ fun MyEventsScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+            }
             if (events.isEmpty()) {
                 item {
-                    Text(
-                        text = "You haven't created any events yet.",
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    EmptyState(
+                        title = "No Events Created",
+                        subtitle = "Create your first event to start managing programmes and contributions.",
+                        icon = Icons.Default.Event
                     )
                 }
             } else {

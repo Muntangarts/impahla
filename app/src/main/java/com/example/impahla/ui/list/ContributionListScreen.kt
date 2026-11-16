@@ -73,6 +73,7 @@ fun ContributionListScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
+            Spacer(modifier = Modifier.height(8.dp))
             // Search Bar
             OutlinedTextField(
                 value = uiState.searchQuery,
